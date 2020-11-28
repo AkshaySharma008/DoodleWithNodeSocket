@@ -10,6 +10,19 @@ var current = {
 }
 
 
+//remove extra data
+function trottle(callback , delay){
+    var previousCall = new Date().getTime();
+    return function(){
+        var time = new Date().getTime();
+        if(time - previousCall >= delay){
+            previousCall = time;
+            callback.apply(null ,arguments);
+        }
+    }
+
+}
+
 function drawLine(x0,y0,x1,y1 , color , emit){
     context.beginPath();
     context.moveTo(x0,y0);
@@ -18,18 +31,31 @@ function drawLine(x0,y0,x1,y1 , color , emit){
     context.lineWidth = 2
     context.stroke();
     context.closePath();
+
+    if(!emit)return;
+
+    var w = canvas.width;
+    var h = canvas.height;
+
+    socket.emit("drawing" , {
+        x0 : x0/w,
+        y0 : y0/h,
+        x1 : x1/w,
+        y1 : y1/h,
+        color
+    })
 }
 
 
 //handlers --mouse/touch events (up/out/down/move) (start/ end or cancel /move)
 
-function mouseDown(e){
+function onMouseDown(e){
     isDrawing = true;
     current.x = e.clientX || e.touches[0].clientX;
     current.y = e.clientY || e.touches[0].clientY;
 }
 
-function mouseUp(e){
+function onMouseUp(e){
     if(!isDrawing) return;
     isDrawing = false;
     drawLine(current.x ,
@@ -42,7 +68,7 @@ function mouseUp(e){
 
 }
 
-function mouseMove(e){
+function onMouseMove(e){
     if(!isDrawing) return;
     drawLine(current.x ,
          current.y ,
@@ -56,3 +82,4 @@ function mouseMove(e){
     current.y = e.clientY || e.touches[0].clientY;
     
 }
+
