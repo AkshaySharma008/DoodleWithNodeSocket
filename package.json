@@ -1,0 +1,24 @@
+{
+  "name": "doodlewithnodesocket",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AkshaySharma008/DoodleWithNodeSocket.git"
+  },
+  "author": "Akshay Sharma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AkshaySharma008/DoodleWithNodeSocket/issues"
+  },
+  "homepage": "https://github.com/AkshaySharma008/DoodleWithNodeSocket#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.6"
+  }
+}
