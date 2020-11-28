@@ -1,4 +1,7 @@
 ## Live Sketching using Socket IO and NodeJS Application
+<img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg"> <img src="https://img.shields.io/badge/Node JS-v12.18.3-brightgreen.svg">
+<img src="https://img.shields.io/badge/Socket IO-v3.0.3-brightgreen.svg">
+
 
 In this Application , I have created a very basic app in which we can do live sketching/doodling
 in same network.
